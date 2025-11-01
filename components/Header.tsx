@@ -3,13 +3,15 @@ import React from 'react';
 import SearchIcon from './icons/SearchIcon';
 import BellIcon from './icons/BellIcon';
 import PlusIcon from './icons/PlusIcon';
+import PlayIcon from './icons/PlayIcon';
 
 interface HeaderProps {
     activePage: string;
     onAddNewEmployeeClick?: () => void;
+    onRunNewPayrollClick?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ activePage, onAddNewEmployeeClick }) => {
+const Header: React.FC<HeaderProps> = ({ activePage, onAddNewEmployeeClick, onRunNewPayrollClick }) => {
     
     const renderHeaderContent = () => {
         switch(activePage) {
@@ -34,6 +36,31 @@ const Header: React.FC<HeaderProps> = ({ activePage, onAddNewEmployeeClick }) =>
                             >
                                 <PlusIcon className="w-5 h-5 mr-2" />
                                 <span>Add New Employee</span>
+                            </button>
+                        </div>
+                    </>
+                );
+            case 'Payroll':
+                 return (
+                    <>
+                        <div>
+                            <h2 className="text-xl font-semibold">Payroll Runs</h2>
+                            <p className="text-sm text-gray-500">Manage and process your company's payroll.</p>
+                        </div>
+                        <div className="flex items-center space-x-6">
+                             <button className="relative text-gray-500 hover:text-dark-gray">
+                                <BellIcon />
+                                <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                                </span>
+                            </button>
+                            <button 
+                                onClick={onRunNewPayrollClick}
+                                className="bg-brand-teal text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:bg-teal-600 transition-colors duration-200 flex items-center"
+                            >
+                                <PlayIcon className="w-5 h-5 mr-2" />
+                                <span>Run New Payroll</span>
                             </button>
                         </div>
                     </>
