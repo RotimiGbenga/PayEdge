@@ -1,6 +1,6 @@
 
 import React from 'react';
-import type { Employee } from '../types';
+import type { PayslipEmployee } from '../types';
 import UsersIcon from './icons/UsersIcon';
 import DollarSignIcon from './icons/DollarSignIcon';
 import CalendarIcon from './icons/CalendarIcon';
@@ -20,7 +20,7 @@ const StatCard: React.FC<{ icon: React.ElementType, title: string, value: string
 );
 
 
-const mockEmployees: Employee[] = [
+const mockEmployees: PayslipEmployee[] = [
     { id: '001', name: 'Adebayo Johnson', role: 'Software Engineer', email: 'a.johnson@company.ng', status: 'Paid', lastPayment: '15/07/2024', amount: 450000 },
     { id: '002', name: 'Ngozi Okonkwo', role: 'Product Manager', email: 'n.okonkwo@company.ng', status: 'Paid', lastPayment: '15/07/2024', amount: 650000 },
     { id: '003', name: 'Emeka Nwosu', role: 'UI/UX Designer', email: 'e.nwosu@company.ng', status: 'Pending', lastPayment: '15/06/2024', amount: 380000 },
@@ -28,7 +28,7 @@ const mockEmployees: Employee[] = [
     { id: '005', name: 'Chinedu Eze', role: 'DevOps Engineer', email: 'c.eze@company.ng', status: 'Paid', lastPayment: '15/07/2024', amount: 510000 },
 ];
 
-const EmployeeTable: React.FC<{ employees: Employee[] }> = ({ employees }) => {
+const EmployeeTable: React.FC<{ employees: PayslipEmployee[] }> = ({ employees }) => {
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(amount);
     };
@@ -49,7 +49,7 @@ const EmployeeTable: React.FC<{ employees: Employee[] }> = ({ employees }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {employees.map((employee, index) => (
+                        {employees.map((employee) => (
                             <tr key={employee.id} className="bg-white border-b hover:bg-gray-50">
                                 <th scope="row" className="px-6 py-4 font-medium text-dark-gray whitespace-nowrap">
                                     {employee.name}

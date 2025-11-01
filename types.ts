@@ -1,5 +1,5 @@
 
-export interface Employee {
+export interface PayslipEmployee {
     id: string;
     name: string;
     role: string;
@@ -7,4 +7,15 @@ export interface Employee {
     status: 'Paid' | 'Pending';
     lastPayment: string;
     amount: number;
+}
+
+export interface DirectoryEmployee {
+    id: string;
+    name: string;
+    avatarUrl: string;
+    employeeId: string;
+    jobTitle: string;
+    department: 'Engineering' | 'Product' | 'Design' | 'Data Science' | 'HR';
+    status: 'Active' | 'On Leave' | 'Terminated';
+    email: string;
 }

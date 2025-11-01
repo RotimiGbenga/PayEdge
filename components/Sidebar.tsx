@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import DashboardIcon from './icons/DashboardIcon';
 import EmployeesIcon from './icons/EmployeesIcon';
 import PayrollIcon from './icons/PayrollIcon';
@@ -7,9 +7,12 @@ import ReportsIcon from './icons/ReportsIcon';
 import SettingsIcon from './icons/SettingsIcon';
 import ChevronDownIcon from './icons/ChevronDownIcon';
 
-const Sidebar: React.FC = () => {
-    const [activeLink, setActiveLink] = useState('Dashboard');
+interface SidebarProps {
+    activeLink: string;
+    setActiveLink: (link: string) => void;
+}
 
+const Sidebar: React.FC<SidebarProps> = ({ activeLink, setActiveLink }) => {
     const navItems = [
         { name: 'Dashboard', icon: DashboardIcon },
         { name: 'Employees', icon: EmployeesIcon },
@@ -28,7 +31,10 @@ const Sidebar: React.FC = () => {
                     <a
                         key={item.name}
                         href="#"
-                        onClick={() => setActiveLink(item.name)}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setActiveLink(item.name)
+                        }}
                         className={`flex items-center px-4 py-3 rounded-lg transition-colors duration-200 ${
                             activeLink === item.name
                                 ? 'bg-brand-teal text-white'
