@@ -4,9 +4,11 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import EmployeeDirectory from './components/EmployeeDirectory';
+import AddNewEmployeeModal from './components/AddNewEmployeeModal';
 
 const App: React.FC = () => {
     const [activePage, setActivePage] = useState('Employees');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const renderContent = () => {
         switch (activePage) {
@@ -24,13 +26,17 @@ const App: React.FC = () => {
                 <Sidebar activeLink={activePage} setActiveLink={setActivePage} />
                 <main className="flex-1 min-w-0">
                     <div className="flex flex-col h-screen">
-                        <Header activePage={activePage} />
+                        <Header 
+                            activePage={activePage} 
+                            onAddNewEmployeeClick={() => setIsModalOpen(true)}
+                        />
                         <div className="flex-1 overflow-y-auto p-4 md:p-8">
                             {renderContent()}
                         </div>
                     </div>
                 </main>
             </div>
+            {isModalOpen && <AddNewEmployeeModal onClose={() => setIsModalOpen(false)} />}
         </div>
     );
 };
